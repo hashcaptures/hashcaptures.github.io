@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Through My Lens — Photography Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f0f11;
+            --bg-secondary: #18181b;
+            --bg-card: #202024;
+            --text-primary: #f4f4f6;
+            --text-secondary: #a1a1aa;
+            --accent: #d4a373;
+            --accent-hover: #e5b88a;
+            --border-color: #2e2e34;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 15, 17, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: var(--text-primary);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .brand span {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 0.25rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav button:hover,
+        nav button.active {
+            color: var(--text-primary);
+        }
+
+        nav button::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav button.active::after,
+        nav button:hover::after {
+            width: 100%;
+        }
+
+        /* Page Sections (SPA Navigation) */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Banner */
+        .hero {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 5rem 2rem 3.5rem;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.8rem, 6vw, 4.75rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            font-weight: 300;
+        }
+
+        /* Main Gallery Grid (10 Photos) */
+        .gallery-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .photo-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(212, 163, 115, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .photo-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background-color: var(--bg-card);
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            display: block;
+        }
+
+        .photo-card:hover .photo-wrapper img {
+            transform: scale(1.04);
+        }
+
+        /* Clean Placeholder Overlay when image isn't loaded yet */
+        .placeholder-box {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e1e24 0%, #27272f 100%);
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .placeholder-box svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--accent);
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .placeholder-label {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .placeholder-hint {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .photo-caption {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .photo-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .photo-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .photo-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .camera-specs {
+            margin-top: 1.25rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.78rem;
+            color: #71717a;
+            display: flex;
+            gap: 1rem;
+            font-family: monospace;
+        }
+
+        /* Trips Page */
+        .trips-container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem;
+        }
+
+        .trip-entry {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 3rem;
+            align-items: center;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            transition: var(--transition);
+        }
+
+        .trip-entry:hover {
+            border-color: rgba(212, 163, 115, 0.35);
+        }
+
+        .trip-entry:nth-child(even) .trip-visual {
+            order: 2;
+        }
+
+        .trip-visual {
+            aspect-ratio: 16 / 10;
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .trip-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .trip-date {
+            color: var(--accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .trip-info h2 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .trip-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .trip-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .trip-tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+        }
+
+        /* Contact & About Page */
+        .contact-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(145deg, var(--bg-secondary), #141417);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 3.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .profile-side {
+            text-align: center;
+            border-right: 1px solid var(--border-color);
+            padding-right: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-side h2 {
+            font-family: var(--font-serif);
+            font-size: 1.9rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-role {
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .profile-location {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .details-side h3 {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .details-side p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.85rem 1.15rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 12, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .lightbox-display {
+            max-height: 75vh;
+            margin: 0 auto 1.25rem;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-display img {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+        }
+
+        .lightbox-caption h3 {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            color: var(--text-primary);
+        }
+
+        .lightbox-caption p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 0.35rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .trip-entry {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.75rem;
+            }
+            .trip-entry:nth-child(even) .trip-visual {
+                order: 0;
+            }
+            .contact-card {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+                gap: 2rem;
+            }
+            .profile-side {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding-right: 0;
+                padding-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav ul {
+                gap: 1.5rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a class="brand" onclick="switchPage('gallery')">YOUR NAME <span>Photography</span></a>
+            <nav>
+                <ul>
+                    <li><button id="nav-gallery" class="active" onclick="switchPage('gallery')">Gallery</button></li>
+                    <li><button id="nav-trips" onclick="switchPage('trips')">Trips & Journals</button></li>
+                    <li><button id="nav-contact" onclick="switchPage('contact')">Contact Card</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- PAGE 1: MAIN GALLERY (10 PHOTOS + CAPTIONS) -->
+    <main id="page-gallery" class="page-section active">
+        <section class="hero">
+            <p class="hero-subtitle">Selected Works &bull; 2024 — 2026</p>
+            <h1>Chasing Light &amp; Quiet Moments</h1>
+            <p>A curated collection of ten frames capturing landscapes, street geometry, and fleeting natural light from my travels.</p>
+        </section>
+
+        <section class="gallery-container">
+            <div class="gallery-grid">
+
+                <!-- Photo 1 -->
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('photo1.jpg', 'Photo 01 — Golden Hour Ridge', 'Add your story or location notes for Photo 1 here.')">
+                        <!-- Replace src with your image path, e.g., images/photo1.jpg -->
+                        <img src="photo1.jpg" alt="Photo 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span class="placeholder-label">photo1</span>
+                            <span class="placeholder-hint">Replace src="photo1.jpg"</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>01 / 10</span><span>Location 1</span></div>
+                            <h2 class="photo-title">Title for Photo 1</h2>
+                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo1.</p>
+                        </div>
+                        <div class="camera-specs">
+                            <span>35mm</span><span>f/2.8</span><span>1/500s</span><span>ISO 100</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Photo 2 -->
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('photo2.jpg', 'Photo 02 — Title', 'Add your story or location notes for Photo 2 here.')">
+                        <img src="photo2.jpg" alt="Photo 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span class="placeholder-label">photo2</span>
+                            <span class="placeholder-hint">Replace src="photo2.jpg"</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>02 / 10</span><span>Location 2</span></div>
+                            <h2 class="photo-title">Title for Photo 2</h2>
+                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo2.</p>
+                        </div>
+                        <div class="camera-specs">
+                            <span>50mm</span><span>f/1.8</span><span>1/1000s</span><span>ISO 200</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Photo 3 -->
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('photo3.jpg', 'Photo 03 — Title', 'Add your story or location notes for Photo 3 here.')">
+                        <img src="photo3.jpg" alt="Photo 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span class="placeholder-label">photo3</span>
+                            <span class="placeholder-hint">Replace src="photo3.jpg"</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>03 / 10</span><span>Location 3</span></div>
+                            <h2 class="photo-title">Title for Photo 3</h2>
+                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo3.</p>
+                        </div>
+                        <div class="camera-specs">
+                            <span>24mm</span><span>f/4.0</span><span>1/250s</span><span>ISO 100</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Photo 4 -->
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('photo4.jpg', 'Photo 04 — Title', 'Add your story or location notes for Photo 4 here.')">
+                        <img src="photo4.jpg" alt="Photo 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span class="placeholder-label">photo4</span>
+                            <span class="placeholder-hint">Replace src="photo4.jpg"</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>04 / 10</span><span>Location 4</span></div>
+                            <h2 class="photo-title">Title for Photo 4</h2>
+                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo4.</p>
+                        </div>
+                        <div class="camera-specs">
+                            <span>85mm</span><span>f/2.0</span><span>1/800s</span><span>ISO 160</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Photo 5 -->
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('photo5.jpg', 'Photo 05 — Title', 'Add your story or location notes for Photo 5 here.')">
+                        <img src="photo5.jpg" alt="Photo 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span class="placeholder-label">photo5</span>
+                            <span class="placeholder-hint">Replace src="photo5.jpg"</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>05 / 10</span><span>Location 5</span></div>
+                            <h2 class="photo-title">Title for Photo 5</h2>
+                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo5.</p>
+                        </div>
+                        <div class="camera-specs">
+                            <span>35mm</span><span>f/5.6</span><span>1/125s</span><span>ISO 400</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Photo 6 -->
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('photo6.jpg', 'Photo 06 — Title', 'Add your story or location notes for Photo 6 here.')">
+                        <img src="photo6.jpg" alt="Photo 6" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span class="placeholder-label">photo6</span>
+                            <span class="placeholder-hint">Replace src="photo6.jpg"</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>06 / 10</span><span>Location 6</span></div>
+                            <h2 class="photo-title">Title for Photo 6</h2>
+                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo6.</p>
+                        </div>
+                        <div class="camera-specs">
+                            <span>28mm</span><span>f/2.8</span><span>1/320s</span><span>ISO 200</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Photo 7 -->
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('photo7.jpg', 'Photo 07 — Title', 'Add your story or location notes for Photo 7 here.')">
+                        <img src="photo7.jpg" alt="Photo 7" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span class="placeholder-label">photo7</span>
+                            <span class="placeholder-hint">Replace src="photo7.jpg"</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>07 / 10</span><span>Location 7</span></div>
+                            <h2 class="photo-title">Title for Photo 7</h2>
+                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo7.</p>
+                        </div>
+                        <div class="camera-specs">
+                            <span>70mm</span><span>f/4.0</span><span>1/640s</span><span>ISO 100</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Photo 8 -->
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('photo8.jpg', 'Photo 08 — Title', 'Add your story or location notes for Photo 8 here.')">
+                        <img src="photo8.jpg" alt="Photo 8" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span class="placeholder-label">photo8</span>
+                            <span class="placeholder-hint">Replace src="photo8.jpg"</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>08 / 10</span><span>Location 8</span></div>
+                            <h2 class="photo-title">Title for Photo 8</h2>
+                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo8.</p>
+                        </div>
+                        <div class="camera-specs">
+                            <span>16mm</span><span>f/8.0</span><span>1/60s</span><span>ISO 100</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Photo 9 -->
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('photo9.jpg', 'Photo 09 — Title', 'Add your story or location notes for Photo 9 here.')">
+                        <img src="photo9.jpg" alt="Photo 9" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span class="placeholder-label">photo9</span>
+                            <span class="placeholder-hint">Replace src="photo9.jpg"</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>09 / 10</span><span>Location 9</span></div>
+                            <h2 class="photo-title">Title for Photo 9</h2>
+                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo9.</p>
+                        </div>
+                        <div class="camera-specs">
+                            <span>50mm</span><span>f/1.4</span><span>1/2000s</span><span>ISO 100</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Photo 10 -->
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('photo10.jpg', 'Photo 10 — Title', 'Add your story or location notes for Photo 10 here.')">
+                        <img src="photo10.jpg" alt="Photo 10" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                            <span class="placeholder-label">photo10</span>
+                            <span class="placeholder-hint">Replace src="photo10.jpg"</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>10 / 10</span><span>Location 10</span></div>
+                            <h2 class="photo-title">Title for Photo 10</h2>
+                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo10.</p>
+                        </div>
+                        <div class="camera-specs">
+                            <span>35mm</span><span>f/2.0</span><span>1/400s</span><span>ISO 320</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- PAGE 2: TRIPS & EXPEDITIONS -->
+    <section id="page-trips" class="page-section">
+        <div class="hero">
+            <p class="hero-subtitle">Field Notes &amp; Travelogues</p>
+            <h1>Trips &amp; Expeditions</h1>
+            <p>Behind-the-scenes stories, routes, and visual diaries from destinations that shaped my eye.</p>
+        </div>
+
+        <div class="trips-container">
+            <!-- Trip 1 -->
+            <article class="trip-entry">
+                <div class="trip-visual">
+                    <img src="trip1.jpg" alt="Trip 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-box" style="display: none;">
+                        <span class="placeholder-label">trip1_cover</span>
+                        <span class="placeholder-hint">Replace src="trip1.jpg"</span>
+                    </div>
+                </div>
+                <div class="trip-info">
+                    <span class="trip-date">Autumn 2025 &bull; Destination 1</span>
+                    <h2>Nordic Coastline &amp; Fjord Mist</h2>
+                    <p>Five days driving along winding coastal roads with unpredictable rain and sudden bursts of golden light. Packed light with just two prime lenses to focus on mood and scale.</p>
+                    <div class="trip-tags">
+                        <span class="trip-tag">Landscape</span>
+                        <span class="trip-tag">35mm &amp; 85mm</span>
+                        <span class="trip-tag">140 Frames Kept</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Trip 2 -->
+            <article class="trip-entry">
+                <div class="trip-visual">
+                    <img src="trip2.jpg" alt="Trip 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-box" style="display: none;">
+                        <span class="placeholder-label">trip2_cover</span>
+                        <span class="placeholder-hint">Replace src="trip2.jpg"</span>
+                    </div>
+                </div>
+                <div class="trip-info">
+                    <span class="trip-date">Summer 2025 &bull; Destination 2</span>
+                    <h2>Highland Passes at Dawn</h2>
+                    <p>Early 4:00 AM starts to catch the first rays hitting the mountain peaks before the valley fog burned away. A study in silence, cold air, and long exposures.</p>
+                    <div class="trip-tags">
+                        <span class="trip-tag">Alpine</span>
+                        <span class="trip-tag">Long Exposure</span>
+                        <span class="trip-tag">2,400m Elevation</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Trip 3 -->
+            <article class="trip-entry">
+                <div class="trip-visual">
+                    <img src="trip3.jpg" alt="Trip 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="placeholder-box" style="display: none;">
+                        <span class="placeholder-label">trip3_cover</span>
+                        <span class="placeholder-hint">Replace src="trip3.jpg"</span>
+                    </div>
+                </div>
+                <div class="trip-info">
+                    <span class="trip-date">Spring 2026 &bull; Destination 3</span>
+                    <h2>After-Hours City Streets</h2>
+                    <p>Wandering through narrow alleys and rain-slicked avenues after dusk, hunting for neon reflections, architectural symmetry, and candid street life.</p>
+                    <div class="trip-tags">
+                        <span class="trip-tag">Street Photography</span>
+                        <span class="trip-tag">Night Walk</span>
+                        <span class="trip-tag">f/1.4 Prime</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- PAGE 3: CONTACT CARD -->
+    <section id="page-contact" class="page-section">
+        <div class="hero">
+            <p class="hero-subtitle">Connect &amp; Collaborate</p>
+            <h1>Get In Touch</h1>
+            <p>Whether you want to talk gear, swap location tips, or request a high-res print, feel free to reach out.</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-card">
+                <div class="profile-side">
+                    <div class="avatar-circle">
+                        <img src="avatar.jpg" alt="Photographer Portrait" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-family: var(--font-serif); font-size: 2rem; color: var(--accent);">YN</span>
+                    </div>
+                    <h2>Your Name</h2>
+                    <div class="profile-role">Hobbyist Photographer</div>
+                    <div class="profile-location">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>Your City, Country</span>
+                    </div>
+                </div>
+
+                <div class="details-side">
+                    <h3>About My Craft</h3>
+                    <p>I shoot primarily natural-light landscapes and candid street scenes. Every photo on this site is edited minimally to preserve the authentic atmosphere of the moment it was taken.</p>
+
+                    <div class="contact-links">
+                        <a href="mailto:your.email@example.com" class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            <span>your.email@example.com</span>
+                        </a>
+
+                        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener" class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                            <span>@yourhandle on Instagram</span>
+                        </a>
+
+                        <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                            <span>github.com/yourusername</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Overlay for Full-Screen Photo Viewing -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+            <div class="lightbox-display" id="lightbox-display"></div>
+            <div class="lightbox-caption">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Your Name Photography. Built for GitHub Pages.</p>
+    </footer>
+
+    <script>
+        // Multi-page tab switching without reloading
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById('page-' + pageId).classList.add('active');
+            document.getElementById('nav-' + pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Lightbox functionality
+        function openLightbox(imgSrc, title, desc) {
+            const lightbox = document.getElementById('lightbox');
+            const display = document.getElementById('lightbox-display');
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-desc').textContent = desc;
+
+            display.innerHTML = `<img src="${imgSrc}" alt="${title}" onerror="this.outerHTML='<div class=\'placeholder-box\' style=\'width:500px;height:350px;border-radius:8px;\'><span class=\'placeholder-label\'>${imgSrc}</span><span class=\'placeholder-hint\'>Upload ${imgSrc} to your repo to preview full-screen</span></div>'">`;
+            lightbox.classList.add('open');
+        }
+
+        function closeLightbox(event) {
+            if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('open');
+            }
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
