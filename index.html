@@ -19,7 +19,7 @@
             --border-color: #2e2e34;
             --font-serif: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
@@ -42,16 +42,16 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(15, 15, 17, 0.85);
+            background: rgba(15, 15, 17, 0.88);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
         }
 
         .nav-container {
-            max-width: 1300px;
+            max-width: 1320px;
             margin: 0 auto;
-            padding: 1.25rem 2rem;
+            padding: 1.15rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -59,7 +59,7 @@
 
         .brand {
             font-family: var(--font-serif);
-            font-size: 1.75rem;
+            font-size: 1.7rem;
             font-weight: 600;
             letter-spacing: 0.04em;
             color: var(--text-primary);
@@ -75,7 +75,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
+            gap: 2.25rem;
         }
 
         nav button {
@@ -83,7 +83,7 @@
             border: none;
             color: var(--text-secondary);
             font-family: var(--font-sans);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 400;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -114,10 +114,10 @@
             width: 100%;
         }
 
-        /* Page Sections (SPA Navigation) */
+        /* Page Sections */
         .page-section {
             display: none;
-            animation: fadeIn 0.6s ease forwards;
+            animation: fadeIn 0.5s ease forwards;
         }
 
         .page-section.active {
@@ -125,15 +125,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* Hero Banner */
         .hero {
-            max-width: 1300px;
+            max-width: 1320px;
             margin: 0 auto;
-            padding: 5rem 2rem 3.5rem;
+            padding: 4rem 2rem 2.25rem;
             text-align: center;
         }
 
@@ -141,39 +141,84 @@
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
+            font-size: 0.78rem;
+            margin-bottom: 0.85rem;
             font-weight: 500;
         }
 
         .hero h1 {
             font-family: var(--font-serif);
-            font-size: clamp(2.8rem, 6vw, 4.75rem);
+            font-size: clamp(2.5rem, 5.5vw, 4.2rem);
             font-weight: 400;
             line-height: 1.1;
-            margin-bottom: 1.25rem;
-            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
         }
 
         .hero p {
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 300;
         }
 
-        /* Main Gallery Grid (10 Photos) */
-        .gallery-container {
-            max-width: 1300px;
+        /* Compact Toolbar */
+        .toolbar {
+            max-width: 1320px;
             margin: 0 auto;
-            padding: 2rem 2rem 6rem;
+            padding: 0 2rem 1.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .toolbar-info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .toolbar-info strong {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .toolbar-actions {
+            display: flex;
+            gap: 0.65rem;
+            align-items: center;
+        }
+
+        .btn-pill {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-pill:hover,
+        .btn-pill.active {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Compact 4-5 Column Portrait Gallery */
+        .gallery-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 2rem 2rem 5.5rem;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 1.5rem;
         }
 
         .photo-card {
@@ -187,15 +232,16 @@
         }
 
         .photo-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(212, 163, 115, 0.4);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(-4px);
+            border-color: rgba(212, 163, 115, 0.45);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
         }
 
         .photo-wrapper {
             position: relative;
             width: 100%;
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 3 / 4;
+            max-height: 310px;
             background-color: var(--bg-card);
             overflow: hidden;
             cursor: zoom-in;
@@ -205,15 +251,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.5s ease;
             display: block;
         }
 
         .photo-card:hover .photo-wrapper img {
-            transform: scale(1.04);
+            transform: scale(1.03);
         }
 
-        /* Clean Placeholder Overlay when image isn't loaded yet */
         .placeholder-box {
             width: 100%;
             height: 100%;
@@ -221,36 +266,27 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #1e1e24 0%, #27272f 100%);
+            background: linear-gradient(135deg, #1d1d22 0%, #26262d 100%);
             color: var(--text-secondary);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1.5rem;
+            padding: 1rem;
             text-align: center;
-        }
-
-        .placeholder-box svg {
-            width: 36px;
-            height: 36px;
-            stroke: var(--accent);
-            margin-bottom: 0.75rem;
-            opacity: 0.8;
         }
 
         .placeholder-label {
             font-family: var(--font-serif);
-            font-size: 1.35rem;
+            font-size: 1.15rem;
             color: var(--text-primary);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
         }
 
         .placeholder-hint {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--text-secondary);
             margin-top: 0.25rem;
         }
 
         .photo-caption {
-            padding: 1.5rem;
+            padding: 1rem 1.1rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -260,57 +296,64 @@
         .photo-meta {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
             color: var(--accent);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .photo-title {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .photo-desc {
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
             font-weight: 300;
-            line-height: 1.6;
+            line-height: 1.45;
         }
 
         .camera-specs {
-            margin-top: 1.25rem;
-            padding-top: 0.85rem;
+            margin-top: 0.8rem;
+            padding-top: 0.6rem;
             border-top: 1px solid var(--border-color);
-            font-size: 0.78rem;
+            font-size: 0.7rem;
             color: #71717a;
-            display: flex;
-            gap: 1rem;
             font-family: monospace;
+        }
+
+        /* Pagination Bar */
+        .pagination {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         /* Trips Page */
         .trips-container {
-            max-width: 1150px;
+            max-width: 1050px;
             margin: 0 auto;
             padding: 2rem 2rem 6rem;
         }
 
         .trip-entry {
             display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 3rem;
+            grid-template-columns: 280px 1fr;
+            gap: 2.25rem;
             align-items: center;
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
+            padding: 2rem;
+            margin-bottom: 2.25rem;
             transition: var(--transition);
         }
 
@@ -318,12 +361,10 @@
             border-color: rgba(212, 163, 115, 0.35);
         }
 
-        .trip-entry:nth-child(even) .trip-visual {
-            order: 2;
-        }
-
         .trip-visual {
-            aspect-ratio: 16 / 10;
+            aspect-ratio: 3 / 4;
+            max-height: 350px;
+            width: 100%;
             border-radius: 6px;
             overflow: hidden;
             background: var(--bg-card);
@@ -338,46 +379,46 @@
 
         .trip-date {
             color: var(--accent);
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.14em;
+            margin-bottom: 0.45rem;
             display: block;
         }
 
         .trip-info h2 {
             font-family: var(--font-serif);
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 400;
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
             line-height: 1.2;
         }
 
         .trip-info p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 300;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .trip-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
+            gap: 0.5rem;
         }
 
         .trip-tag {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-secondary);
-            padding: 0.35rem 0.85rem;
+            padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
         }
 
-        /* Contact & About Page */
+        /* Contact Card Page */
         .contact-container {
-            max-width: 900px;
+            max-width: 880px;
             margin: 0 auto;
             padding: 2rem 2rem 6rem;
         }
@@ -386,10 +427,10 @@
             background: linear-gradient(145deg, var(--bg-secondary), #141417);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 3.5rem;
+            padding: 3rem;
             display: grid;
             grid-template-columns: 1fr 1.3fr;
-            gap: 3rem;
+            gap: 2.75rem;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
@@ -408,7 +449,7 @@
         .profile-side {
             text-align: center;
             border-right: 1px solid var(--border-color);
-            padding-right: 2.5rem;
+            padding-right: 2.25rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -416,15 +457,15 @@
         }
 
         .avatar-circle {
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             background: var(--bg-card);
             border: 2px solid var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             overflow: hidden;
         }
 
@@ -436,22 +477,22 @@
 
         .profile-side h2 {
             font-family: var(--font-serif);
-            font-size: 1.9rem;
+            font-size: 1.85rem;
             font-weight: 600;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.2rem;
         }
 
         .profile-role {
             color: var(--accent);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
         }
 
         .profile-location {
             color: var(--text-secondary);
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             display: flex;
             align-items: center;
             gap: 0.4rem;
@@ -459,35 +500,35 @@
 
         .details-side h3 {
             font-family: var(--font-serif);
-            font-size: 1.75rem;
+            font-size: 1.7rem;
             font-weight: 400;
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
         }
 
         .details-side p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 300;
-            margin-bottom: 2rem;
+            margin-bottom: 1.75rem;
         }
 
         .contact-links {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.85rem;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 0.85rem 1.15rem;
+            gap: 0.9rem;
+            padding: 0.8rem 1.1rem;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 6px;
             text-decoration: none;
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             transition: var(--transition);
         }
 
@@ -521,7 +562,7 @@
         }
 
         .lightbox-content {
-            max-width: 1000px;
+            max-width: 820px;
             width: 100%;
             text-align: center;
             position: relative;
@@ -529,7 +570,7 @@
 
         .lightbox-close {
             position: absolute;
-            top: -40px;
+            top: -38px;
             right: 0;
             background: none;
             border: none;
@@ -541,7 +582,7 @@
 
         .lightbox-display {
             max-height: 75vh;
-            margin: 0 auto 1.25rem;
+            margin: 0 auto 1.1rem;
             border-radius: 4px;
             overflow: hidden;
             display: flex;
@@ -557,34 +598,30 @@
 
         .lightbox-caption h3 {
             font-family: var(--font-serif);
-            font-size: 1.75rem;
+            font-size: 1.65rem;
             color: var(--text-primary);
         }
 
         .lightbox-caption p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-top: 0.35rem;
+            font-size: 0.92rem;
+            margin-top: 0.3rem;
         }
 
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
-            padding: 2.5rem 2rem;
+            padding: 2.25rem 2rem;
             text-align: center;
             color: var(--text-secondary);
             font-size: 0.85rem;
         }
 
-        /* Responsive */
-        @media (max-width: 860px) {
+        @media (max-width: 820px) {
             .trip-entry {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
-                padding: 1.75rem;
-            }
-            .trip-entry:nth-child(even) .trip-visual {
-                order: 0;
+                padding: 1.5rem;
             }
             .contact-card {
                 grid-template-columns: 1fr;
@@ -602,20 +639,20 @@
         @media (max-width: 600px) {
             .nav-container {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.85rem;
             }
             nav ul {
-                gap: 1.5rem;
+                gap: 1.4rem;
             }
             .gallery-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Header -->
     <header>
         <div class="nav-container">
             <a class="brand" onclick="switchPage('gallery')">YOUR NAME <span>Photography</span></a>
@@ -629,239 +666,26 @@
         </div>
     </header>
 
-    <!-- PAGE 1: MAIN GALLERY (10 PHOTOS + CAPTIONS) -->
+    <!-- PAGE 1: COMPACT PORTRAIT GALLERY -->
     <main id="page-gallery" class="page-section active">
         <section class="hero">
-            <p class="hero-subtitle">Selected Works &bull; 2024 — 2026</p>
+            <p class="hero-subtitle">Selected Works &bull; 37 Portrait Frames</p>
             <h1>Chasing Light &amp; Quiet Moments</h1>
-            <p>A curated collection of ten frames capturing landscapes, street geometry, and fleeting natural light from my travels.</p>
+            <p>Compact vertical contact sheets so you can browse smoothly without giant scrolling photos.</p>
         </section>
 
-        <section class="gallery-container">
-            <div class="gallery-grid">
-
-                <!-- Photo 1 -->
-                <article class="photo-card">
-                    <div class="photo-wrapper" onclick="openLightbox('photo1.jpg', 'Photo 01 — Golden Hour Ridge', 'Add your story or location notes for Photo 1 here.')">
-                        <!-- Replace src with your image path, e.g., images/photo1.jpg -->
-                        <img src="photo1.jpg" alt="Photo 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder-box" style="display: none;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span class="placeholder-label">photo1</span>
-                            <span class="placeholder-hint">Replace src="photo1.jpg"</span>
-                        </div>
-                    </div>
-                    <div class="photo-caption">
-                        <div>
-                            <div class="photo-meta"><span>01 / 10</span><span>Location 1</span></div>
-                            <h2 class="photo-title">Title for Photo 1</h2>
-                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo1.</p>
-                        </div>
-                        <div class="camera-specs">
-                            <span>35mm</span><span>f/2.8</span><span>1/500s</span><span>ISO 100</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Photo 2 -->
-                <article class="photo-card">
-                    <div class="photo-wrapper" onclick="openLightbox('photo2.jpg', 'Photo 02 — Title', 'Add your story or location notes for Photo 2 here.')">
-                        <img src="photo2.jpg" alt="Photo 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder-box" style="display: none;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span class="placeholder-label">photo2</span>
-                            <span class="placeholder-hint">Replace src="photo2.jpg"</span>
-                        </div>
-                    </div>
-                    <div class="photo-caption">
-                        <div>
-                            <div class="photo-meta"><span>02 / 10</span><span>Location 2</span></div>
-                            <h2 class="photo-title">Title for Photo 2</h2>
-                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo2.</p>
-                        </div>
-                        <div class="camera-specs">
-                            <span>50mm</span><span>f/1.8</span><span>1/1000s</span><span>ISO 200</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Photo 3 -->
-                <article class="photo-card">
-                    <div class="photo-wrapper" onclick="openLightbox('photo3.jpg', 'Photo 03 — Title', 'Add your story or location notes for Photo 3 here.')">
-                        <img src="photo3.jpg" alt="Photo 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder-box" style="display: none;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span class="placeholder-label">photo3</span>
-                            <span class="placeholder-hint">Replace src="photo3.jpg"</span>
-                        </div>
-                    </div>
-                    <div class="photo-caption">
-                        <div>
-                            <div class="photo-meta"><span>03 / 10</span><span>Location 3</span></div>
-                            <h2 class="photo-title">Title for Photo 3</h2>
-                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo3.</p>
-                        </div>
-                        <div class="camera-specs">
-                            <span>24mm</span><span>f/4.0</span><span>1/250s</span><span>ISO 100</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Photo 4 -->
-                <article class="photo-card">
-                    <div class="photo-wrapper" onclick="openLightbox('photo4.jpg', 'Photo 04 — Title', 'Add your story or location notes for Photo 4 here.')">
-                        <img src="photo4.jpg" alt="Photo 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder-box" style="display: none;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span class="placeholder-label">photo4</span>
-                            <span class="placeholder-hint">Replace src="photo4.jpg"</span>
-                        </div>
-                    </div>
-                    <div class="photo-caption">
-                        <div>
-                            <div class="photo-meta"><span>04 / 10</span><span>Location 4</span></div>
-                            <h2 class="photo-title">Title for Photo 4</h2>
-                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo4.</p>
-                        </div>
-                        <div class="camera-specs">
-                            <span>85mm</span><span>f/2.0</span><span>1/800s</span><span>ISO 160</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Photo 5 -->
-                <article class="photo-card">
-                    <div class="photo-wrapper" onclick="openLightbox('photo5.jpg', 'Photo 05 — Title', 'Add your story or location notes for Photo 5 here.')">
-                        <img src="photo5.jpg" alt="Photo 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder-box" style="display: none;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span class="placeholder-label">photo5</span>
-                            <span class="placeholder-hint">Replace src="photo5.jpg"</span>
-                        </div>
-                    </div>
-                    <div class="photo-caption">
-                        <div>
-                            <div class="photo-meta"><span>05 / 10</span><span>Location 5</span></div>
-                            <h2 class="photo-title">Title for Photo 5</h2>
-                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo5.</p>
-                        </div>
-                        <div class="camera-specs">
-                            <span>35mm</span><span>f/5.6</span><span>1/125s</span><span>ISO 400</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Photo 6 -->
-                <article class="photo-card">
-                    <div class="photo-wrapper" onclick="openLightbox('photo6.jpg', 'Photo 06 — Title', 'Add your story or location notes for Photo 6 here.')">
-                        <img src="photo6.jpg" alt="Photo 6" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder-box" style="display: none;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span class="placeholder-label">photo6</span>
-                            <span class="placeholder-hint">Replace src="photo6.jpg"</span>
-                        </div>
-                    </div>
-                    <div class="photo-caption">
-                        <div>
-                            <div class="photo-meta"><span>06 / 10</span><span>Location 6</span></div>
-                            <h2 class="photo-title">Title for Photo 6</h2>
-                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo6.</p>
-                        </div>
-                        <div class="camera-specs">
-                            <span>28mm</span><span>f/2.8</span><span>1/320s</span><span>ISO 200</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Photo 7 -->
-                <article class="photo-card">
-                    <div class="photo-wrapper" onclick="openLightbox('photo7.jpg', 'Photo 07 — Title', 'Add your story or location notes for Photo 7 here.')">
-                        <img src="photo7.jpg" alt="Photo 7" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder-box" style="display: none;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span class="placeholder-label">photo7</span>
-                            <span class="placeholder-hint">Replace src="photo7.jpg"</span>
-                        </div>
-                    </div>
-                    <div class="photo-caption">
-                        <div>
-                            <div class="photo-meta"><span>07 / 10</span><span>Location 7</span></div>
-                            <h2 class="photo-title">Title for Photo 7</h2>
-                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo7.</p>
-                        </div>
-                        <div class="camera-specs">
-                            <span>70mm</span><span>f/4.0</span><span>1/640s</span><span>ISO 100</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Photo 8 -->
-                <article class="photo-card">
-                    <div class="photo-wrapper" onclick="openLightbox('photo8.jpg', 'Photo 08 — Title', 'Add your story or location notes for Photo 8 here.')">
-                        <img src="photo8.jpg" alt="Photo 8" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder-box" style="display: none;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span class="placeholder-label">photo8</span>
-                            <span class="placeholder-hint">Replace src="photo8.jpg"</span>
-                        </div>
-                    </div>
-                    <div class="photo-caption">
-                        <div>
-                            <div class="photo-meta"><span>08 / 10</span><span>Location 8</span></div>
-                            <h2 class="photo-title">Title for Photo 8</h2>
-                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo8.</p>
-                        </div>
-                        <div class="camera-specs">
-                            <span>16mm</span><span>f/8.0</span><span>1/60s</span><span>ISO 100</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Photo 9 -->
-                <article class="photo-card">
-                    <div class="photo-wrapper" onclick="openLightbox('photo9.jpg', 'Photo 09 — Title', 'Add your story or location notes for Photo 9 here.')">
-                        <img src="photo9.jpg" alt="Photo 9" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder-box" style="display: none;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span class="placeholder-label">photo9</span>
-                            <span class="placeholder-hint">Replace src="photo9.jpg"</span>
-                        </div>
-                    </div>
-                    <div class="photo-caption">
-                        <div>
-                            <div class="photo-meta"><span>09 / 10</span><span>Location 9</span></div>
-                            <h2 class="photo-title">Title for Photo 9</h2>
-                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo9.</p>
-                        </div>
-                        <div class="camera-specs">
-                            <span>50mm</span><span>f/1.4</span><span>1/2000s</span><span>ISO 100</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Photo 10 -->
-                <article class="photo-card">
-                    <div class="photo-wrapper" onclick="openLightbox('photo10.jpg', 'Photo 10 — Title', 'Add your story or location notes for Photo 10 here.')">
-                        <img src="photo10.jpg" alt="Photo 10" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="placeholder-box" style="display: none;">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-                            <span class="placeholder-label">photo10</span>
-                            <span class="placeholder-hint">Replace src="photo10.jpg"</span>
-                        </div>
-                    </div>
-                    <div class="photo-caption">
-                        <div>
-                            <div class="photo-meta"><span>10 / 10</span><span>Location 10</span></div>
-                            <h2 class="photo-title">Title for Photo 10</h2>
-                            <p class="photo-desc">Write a short caption describing the mood, weather, or story behind photo10.</p>
-                        </div>
-                        <div class="camera-specs">
-                            <span>35mm</span><span>f/2.0</span><span>1/400s</span><span>ISO 320</span>
-                        </div>
-                    </div>
-                </article>
-
+        <div class="toolbar">
+            <div class="toolbar-info" id="gallery-status">Showing <strong>1–12</strong> of <strong>37</strong> photos</div>
+            <div class="toolbar-actions">
+                <button class="btn-pill active" id="btn-paged" onclick="setViewMode('paged')">Pages (12/page)</button>
+                <button class="btn-pill" id="btn-all" onclick="setViewMode('all')">Show All (37)</button>
+                <button class="btn-pill" onclick="reshuffleGallery()">Shuffle Order</button>
             </div>
+        </div>
+
+        <section class="gallery-container">
+            <div class="gallery-grid" id="gallery-grid"></div>
+            <div class="pagination" id="pagination"></div>
         </section>
     </main>
 
@@ -874,65 +698,59 @@
         </div>
 
         <div class="trips-container">
-            <!-- Trip 1 -->
             <article class="trip-entry">
                 <div class="trip-visual">
-                    <img src="trip1.jpg" alt="Trip 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="DSC05680-300kb.jpg" alt="Trip 1" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-box" style="display: none;">
-                        <span class="placeholder-label">trip1_cover</span>
-                        <span class="placeholder-hint">Replace src="trip1.jpg"</span>
+                        <span class="placeholder-label">DSC05680-300kb.jpg</span>
+                        <span class="placeholder-hint">Trip 1 Cover</span>
                     </div>
                 </div>
                 <div class="trip-info">
                     <span class="trip-date">Autumn 2025 &bull; Destination 1</span>
                     <h2>Nordic Coastline &amp; Fjord Mist</h2>
-                    <p>Five days driving along winding coastal roads with unpredictable rain and sudden bursts of golden light. Packed light with just two prime lenses to focus on mood and scale.</p>
+                    <p>Five days driving along winding coastal roads with unpredictable rain and sudden bursts of golden light.</p>
                     <div class="trip-tags">
                         <span class="trip-tag">Landscape</span>
-                        <span class="trip-tag">35mm &amp; 85mm</span>
-                        <span class="trip-tag">140 Frames Kept</span>
+                        <span class="trip-tag">Portrait Framing</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Trip 2 -->
             <article class="trip-entry">
                 <div class="trip-visual">
-                    <img src="trip2.jpg" alt="Trip 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="IMG_1361-300kb.jpg" alt="Trip 2" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-box" style="display: none;">
-                        <span class="placeholder-label">trip2_cover</span>
-                        <span class="placeholder-hint">Replace src="trip2.jpg"</span>
+                        <span class="placeholder-label">IMG_1361-300kb.jpg</span>
+                        <span class="placeholder-hint">Trip 2 Cover</span>
                     </div>
                 </div>
                 <div class="trip-info">
                     <span class="trip-date">Summer 2025 &bull; Destination 2</span>
                     <h2>Highland Passes at Dawn</h2>
-                    <p>Early 4:00 AM starts to catch the first rays hitting the mountain peaks before the valley fog burned away. A study in silence, cold air, and long exposures.</p>
+                    <p>Early morning starts to catch the first rays hitting the mountain peaks before valley fog burned away.</p>
                     <div class="trip-tags">
                         <span class="trip-tag">Alpine</span>
                         <span class="trip-tag">Long Exposure</span>
-                        <span class="trip-tag">2,400m Elevation</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Trip 3 -->
             <article class="trip-entry">
                 <div class="trip-visual">
-                    <img src="trip3.jpg" alt="Trip 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="DSC07876-300kb.jpg" alt="Trip 3" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="placeholder-box" style="display: none;">
-                        <span class="placeholder-label">trip3_cover</span>
-                        <span class="placeholder-hint">Replace src="trip3.jpg"</span>
+                        <span class="placeholder-label">DSC07876-300kb.jpg</span>
+                        <span class="placeholder-hint">Trip 3 Cover</span>
                     </div>
                 </div>
                 <div class="trip-info">
                     <span class="trip-date">Spring 2026 &bull; Destination 3</span>
                     <h2>After-Hours City Streets</h2>
-                    <p>Wandering through narrow alleys and rain-slicked avenues after dusk, hunting for neon reflections, architectural symmetry, and candid street life.</p>
+                    <p>Wandering through narrow alleys and rain-slicked avenues after dusk, hunting for reflections and candid life.</p>
                     <div class="trip-tags">
                         <span class="trip-tag">Street Photography</span>
                         <span class="trip-tag">Night Walk</span>
-                        <span class="trip-tag">f/1.4 Prime</span>
                     </div>
                 </div>
             </article>
@@ -951,7 +769,7 @@
             <div class="contact-card">
                 <div class="profile-side">
                     <div class="avatar-circle">
-                        <img src="avatar.jpg" alt="Photographer Portrait" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <img src="DSC07811-300kb.jpg" alt="Photographer Portrait" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none; font-family: var(--font-serif); font-size: 2rem; color: var(--accent);">YN</span>
                     </div>
                     <h2>Your Name</h2>
@@ -971,12 +789,10 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                             <span>your.email@example.com</span>
                         </a>
-
                         <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener" class="contact-item">
                             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                             <span>@yourhandle on Instagram</span>
                         </a>
-
                         <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="contact-item">
                             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                             <span>github.com/yourusername</span>
@@ -987,7 +803,7 @@
         </div>
     </section>
 
-    <!-- Lightbox Overlay for Full-Screen Photo Viewing -->
+    <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
         <div class="lightbox-content">
             <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
@@ -1004,24 +820,138 @@
     </footer>
 
     <script>
-        // Multi-page tab switching without reloading
+const PHOTOS = [
+  { id: 1, file: "DSC06094-300kb.jpg", location: "Location", title: "DSC06094-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC06094-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 2, file: "DSC08007-300kb.jpg", location: "Location", title: "DSC08007-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC08007-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 3, file: "DSC07597-300kb.jpg", location: "Location", title: "DSC07597-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC07597-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 4, file: "DSC06316-300kb.jpg", location: "Location", title: "DSC06316-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC06316-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 5, file: "DSC08435-300kb.jpg", location: "Location", title: "DSC08435-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC08435-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 6, file: "DSC09714-300kb.jpg", location: "Location", title: "DSC09714-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC09714-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 7, file: "DSC09759-300kb.jpg", location: "Location", title: "DSC09759-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC09759-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 8, file: "DSC05969-300kb.jpg", location: "Location", title: "DSC05969-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC05969-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 9, file: "DSC09692-300kb.jpg", location: "Location", title: "DSC09692-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC09692-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 10, file: "DSC09836-300kb.jpg", location: "Location", title: "DSC09836-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC09836-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 11, file: "IMG_1361-300kb.jpg", location: "Location", title: "IMG_1361-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind IMG_1361-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 12, file: "IMG_1328-300kb.jpg", location: "Location", title: "IMG_1328-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind IMG_1328-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 13, file: "IMG_1342-300kb.jpg", location: "Location", title: "IMG_1342-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind IMG_1342-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 14, file: "DSC06361-300kb.jpg", location: "Location", title: "DSC06361-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC06361-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 15, file: "DSC07554-300kb.jpg", location: "Location", title: "DSC07554-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC07554-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 16, file: "DSC07928-300kb.jpg", location: "Location", title: "DSC07928-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC07928-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 17, file: "DSC09797-300kb.jpg", location: "Location", title: "DSC09797-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC09797-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 18, file: "DSC07876-300kb.jpg", location: "Location", title: "DSC07876-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC07876-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 19, file: "IMG_1408-300kb.jpg", location: "Location", title: "IMG_1408-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind IMG_1408-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 20, file: "DSC06176-300kb.jpg", location: "Location", title: "DSC06176-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC06176-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 21, file: "DSC09710-300kb.jpg", location: "Location", title: "DSC09710-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC09710-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 22, file: "DSC05426-300kb.jpg", location: "Location", title: "DSC05426-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC05426-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 23, file: "IMG_1402-300kb.jpg", location: "Location", title: "IMG_1402-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind IMG_1402-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 24, file: "DSC07811-300kb.jpg", location: "Location", title: "DSC07811-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC07811-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 25, file: "DSC07905-300kb.jpg", location: "Location", title: "DSC07905-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC07905-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 26, file: "DSC05707-300kb.jpg", location: "Location", title: "DSC05707-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC05707-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 27, file: "IMG_1390-300kb.jpg", location: "Location", title: "IMG_1390-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind IMG_1390-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 28, file: "DSC09837-300kb.jpg", location: "Location", title: "DSC09837-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC09837-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 29, file: "DSC08057-300kb.jpg", location: "Location", title: "DSC08057-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC08057-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 30, file: "DSC05811-300kb.jpg", location: "Location", title: "DSC05811-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC05811-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 31, file: "DSC09628-300kb.jpg", location: "Location", title: "DSC09628-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC09628-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 32, file: "DSC06286-300kb.jpg", location: "Location", title: "DSC06286-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC06286-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 33, file: "DSC07816-300kb.jpg", location: "Location", title: "DSC07816-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC07816-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 34, file: "DSC07822-300kb.jpg", location: "Location", title: "DSC07822-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC07822-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 35, file: "DSC07886-300kb.jpg", location: "Location", title: "DSC07886-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC07886-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 36, file: "DSC05680-300kb.jpg", location: "Location", title: "DSC05680-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC05680-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" },
+  { id: 37, file: "DSC06241-300kb.jpg", location: "Location", title: "DSC06241-300kb.jpg", caption: "Write a short caption describing the mood, light, or story behind DSC06241-300kb.jpg.", specs: "35mm · f/2.8 · 1/500s · ISO 100" }
+];
+
+        let currentPhotos = [...PHOTOS];
+        let viewMode = 'paged'; // 'paged' or 'all'
+        let currentPage = 1;
+        const pageSize = 12;
+
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-
             document.getElementById('page-' + pageId).classList.add('active');
             document.getElementById('nav-' + pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Lightbox functionality
+        function setViewMode(mode) {
+            viewMode = mode;
+            currentPage = 1;
+            document.getElementById('btn-paged').classList.toggle('active', mode === 'paged');
+            document.getElementById('btn-all').classList.toggle('active', mode === 'all');
+            renderGallery();
+        }
+
+        function reshuffleGallery() {
+            for (let i = currentPhotos.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentPhotos[i], currentPhotos[j]] = [currentPhotos[j], currentPhotos[i]];
+            }
+            currentPage = 1;
+            renderGallery();
+        }
+
+        function renderGallery() {
+            const grid = document.getElementById('gallery-grid');
+            const pagination = document.getElementById('pagination');
+            const status = document.getElementById('gallery-status');
+            const total = currentPhotos.length;
+
+            let slice = currentPhotos;
+            let startIdx = 0;
+
+            if (viewMode === 'paged') {
+                const totalPages = Math.ceil(total / pageSize);
+                if (currentPage > totalPages) currentPage = totalPages;
+                startIdx = (currentPage - 1) * pageSize;
+                slice = currentPhotos.slice(startIdx, startIdx + pageSize);
+                status.innerHTML = `Showing <strong>${startIdx + 1}–${Math.min(startIdx + pageSize, total)}</strong> of <strong>${total}</strong> photos (Page ${currentPage} of ${totalPages})`;
+
+                let pagHtml = '';
+                for (let p = 1; p <= totalPages; p++) {
+                    pagHtml += `<button class="btn-pill ${p === currentPage ? 'active' : ''}" onclick="goToPage(${p})">Page ${p}</button>`;
+                }
+                pagination.innerHTML = pagHtml;
+            } else {
+                status.innerHTML = `Showing all <strong>${total}</strong> photos`;
+                pagination.innerHTML = '';
+            }
+
+            grid.innerHTML = slice.map((photo, index) => {
+                const displayNum = String(startIdx + index + 1).padStart(2, '0');
+                return `
+                <article class="photo-card">
+                    <div class="photo-wrapper" onclick="openLightbox('${photo.file}', '${photo.title}', '${photo.caption}')">
+                        <img src="${photo.file}" alt="${photo.title}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="placeholder-box" style="display: none;">
+                            <span class="placeholder-label">${photo.file}</span>
+                            <span class="placeholder-hint">Place ${photo.file} in repo</span>
+                        </div>
+                    </div>
+                    <div class="photo-caption">
+                        <div>
+                            <div class="photo-meta"><span>${displayNum} / ${total}</span><span>${photo.location}</span></div>
+                            <h2 class="photo-title">${photo.title}</h2>
+                            <p class="photo-desc">${photo.caption}</p>
+                        </div>
+                        <div class="camera-specs">${photo.specs}</div>
+                    </div>
+                </article>`;
+            }).join('');
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            renderGallery();
+            window.scrollTo({ top: document.querySelector('.toolbar').offsetTop - 80, behavior: 'smooth' });
+        }
+
         function openLightbox(imgSrc, title, desc) {
             const lightbox = document.getElementById('lightbox');
             const display = document.getElementById('lightbox-display');
             document.getElementById('lightbox-title').textContent = title;
             document.getElementById('lightbox-desc').textContent = desc;
 
-            display.innerHTML = `<img src="${imgSrc}" alt="${title}" onerror="this.outerHTML='<div class=\'placeholder-box\' style=\'width:500px;height:350px;border-radius:8px;\'><span class=\'placeholder-label\'>${imgSrc}</span><span class=\'placeholder-hint\'>Upload ${imgSrc} to your repo to preview full-screen</span></div>'">`;
+            display.innerHTML = `<img src="${imgSrc}" alt="${title}" onerror="this.outerHTML='<div class=\'placeholder-box\' style=\'width:320px;height:420px;border-radius:8px;\'><span class=\'placeholder-label\'>${imgSrc}</span><span class=\'placeholder-hint\'>Upload ${imgSrc} to preview full-screen</span></div>'">`;
             lightbox.classList.add('open');
         }
 
@@ -1031,12 +961,13 @@
             }
         }
 
-        // Close lightbox with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 document.getElementById('lightbox').classList.remove('open');
             }
         });
+
+        renderGallery();
     </script>
 </body>
 </html>
